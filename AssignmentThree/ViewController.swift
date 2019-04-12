@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     let middleName = "Валериевич"
     let joinedNameAndLastName = "MichailBondarenko"
     let str = "Hello, world!"
-    let number = "12345"
+    let number = "12345948"
+    let password = "32556reWDr"
     
     
 
@@ -35,8 +36,8 @@ class ViewController: UIViewController {
         let formatedNumber = addNumberDividers(number: number)
         print(formatedNumber)
         
-        
-        
+        let secureLevel = checkSecureLavel(password: password)
+        print("the password - \(password), secure level - \(secureLevel)")
     }
     
 //    1 создать строку с своим именемвывести количество символов содержащихся в ней
@@ -88,11 +89,55 @@ class ViewController: UIViewController {
                 result.insert(",", at: result.startIndex)
             }
         }
-        
         return result
     }
     
+//    6 проверить пароль на надежность от 1 до 5
+//    4) если пароль содержит числа +1
+//    b) символы верхнего регистра +1
+//    c) символы нижнего регистра +1
+//    d) спец символы +1
+//    e) если содержит все вышесказанное
+//    пример:123456 - 1
+//    qwertyui - 1
+//    12345qwerty - 2
+//    32556reWDr - 3
+//    4) b) c)
     
-
+    func checkSecureLavel(password: String) -> Int{
+        var secureLevel = 0
+        
+        if containsNumber(password) {
+            secureLevel += 1
+        }
+        if  containsLowcaseChar(password) {
+            secureLevel += 1
+        }
+        if  containsUpercaseChar(password) {
+            secureLevel += 1
+        }
+        if  containsSpecialChar(password) {
+            secureLevel += 1
+        }
+        return secureLevel
+    }
+    
+    func containsNumber(_ string: String) -> Bool {
+        let numbersRange = string.rangeOfCharacter(from: .decimalDigits)
+        return (numbersRange != nil)
+    }
+    
+    func containsLowcaseChar(_ string: String) -> Bool {
+        return string.rangeOfCharacter(from: CharacterSet.lowercaseLetters) != nil
+    }
+    
+    func containsUpercaseChar(_ string: String) -> Bool {
+        return string.rangeOfCharacter(from: CharacterSet.uppercaseLetters) != nil
+    }
+    
+    func containsSpecialChar(_ string: String) -> Bool {
+        return string.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil
+    }
+    
 }
 
