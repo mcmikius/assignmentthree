@@ -16,9 +16,10 @@ class ViewController: UIViewController {
     let str = "Hello, world!"
     let number = "12345948"
     let password = "32556reWDr"
+    let someArray = [9, 1, 2, 5, 1, 7]
     
     
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -38,14 +39,17 @@ class ViewController: UIViewController {
         
         let secureLevel = checkSecureLavel(password: password)
         print("the password - \(password), secure level - \(secureLevel)")
+        
+        let editedArray = sortAndDelete(someArray)
+        print("Base array - \(someArray), new array - \(editedArray)")
     }
     
-//    1 создать строку с своим именемвывести количество символов содержащихся в ней
+    //    1 создать строку с своим именемвывести количество символов содержащихся в ней
     func nameCount(name: String) -> Int {
         let count = name.count
         return count
     }
-//    2 создать строку с своим отчеством проверить его на окончание “ич/на”(в классе написан метод который позволяет проверить на суффикс или префикс, найдите и используйте его)
+    //    2 создать строку с своим отчеством проверить его на окончание “ич/на”(в классе написан метод который позволяет проверить на суффикс или префикс, найдите и используйте его)
     
     func sufixSurname(middleName: String) -> String {
         var suffix = ""
@@ -61,14 +65,14 @@ class ViewController: UIViewController {
         return suffix
     }
     
-//    3 создать строку где слитно написано Ваши ИмяФамилия “Iv4nV4silevich"разбить на две отдельных строки из предыдущей создать третью где они обе будут разделены пробеломstr1 = “Iv4n”str2 = “V4silevich”str3 = “Iv4n V4silevich"
+    //    3 создать строку где слитно написано Ваши ИмяФамилия “Iv4nV4silevich"разбить на две отдельных строки из предыдущей создать третью где они обе будут разделены пробеломstr1 = “Iv4n”str2 = “V4silevich”str3 = “Iv4n V4silevich"
     
-//    func divideWords(word: String) -> (String, String, String) {
-//        word.reversed()
-//    }
+    //    func divideWords(word: String) -> (String, String, String) {
+    //        word.reversed()
+    //    }
     
     
-//    4 вывести строку зеркально Ось -> ьсОне используя reverse (посимвольно)
+    //    4 вывести строку зеркально Ось -> ьсОне используя reverse (посимвольно)
     
     func reverse(string: String) -> String {
         var result = ""
@@ -79,7 +83,7 @@ class ViewController: UIViewController {
         return result
     }
     
-//    5 добавить запятые в строку как их расставляет калькулятор 1234567 -> 1,234,56712345 -> 12,345(не использовать встроенный метод для применения формата)
+    //    5 добавить запятые в строку как их расставляет калькулятор 1234567 -> 1,234,56712345 -> 12,345(не использовать встроенный метод для применения формата)
     
     func addNumberDividers(number: String) -> String {
         var result = ""
@@ -92,17 +96,17 @@ class ViewController: UIViewController {
         return result
     }
     
-//    6 проверить пароль на надежность от 1 до 5
-//    4) если пароль содержит числа +1
-//    b) символы верхнего регистра +1
-//    c) символы нижнего регистра +1
-//    d) спец символы +1
-//    e) если содержит все вышесказанное
-//    пример:123456 - 1
-//    qwertyui - 1
-//    12345qwerty - 2
-//    32556reWDr - 3
-//    4) b) c)
+    //    6 проверить пароль на надежность от 1 до 5
+    //    4) если пароль содержит числа +1
+    //    b) символы верхнего регистра +1
+    //    c) символы нижнего регистра +1
+    //    d) спец символы +1
+    //    e) если содержит все вышесказанное
+    //    пример:123456 - 1
+    //    qwertyui - 1
+    //    12345qwerty - 2
+    //    32556reWDr - 3
+    //    4) b) c)
     
     func checkSecureLavel(password: String) -> Int{
         var secureLevel = 0
@@ -137,6 +141,32 @@ class ViewController: UIViewController {
     
     func containsSpecialChar(_ string: String) -> Bool {
         return string.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil
+    }
+    
+    //    7 сортировка массива не встроенным методом по возрастанию + удалить дубликаты[9, 1, 2, 5, 1, 7]
+    
+    func sortAndDelete(_ array: [Int]) -> [Int] {
+        func arraySort(_ array: [Int]) -> [Int] {
+            var result = array
+            
+            for x in 1..<result.count {
+                var y = x
+                while y > 0 && result[y] < result[y - 1] {
+                    result.swapAt(y - 1, y)
+                    y -= 1
+                }
+            }
+            return result
+        }
+        
+        func removeDuplicates(array: [Int]) -> [Int] {
+            let baseArray = Array(Set(array))
+            return baseArray
+        }
+        
+        let result = arraySort(removeDuplicates(array: array))
+        
+        return result
     }
     
 }
