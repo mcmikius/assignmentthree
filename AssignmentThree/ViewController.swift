@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
     let number = "12345948"
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
-    
+    let string = "ЯЗЗЬ"
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -168,6 +169,12 @@ class ViewController: UIViewController {
         
         return result
     }
+    
+//    8 написать метод который будет переводить строку в транслит - пример print(convertStrToTr4nslite(:”ЯЗЗЬ”)) -> “YAZZ”print(convertStrToTr4nslite:”морДа”) -> “morD4”
+    
+    
+    
+    
     
 }
 
