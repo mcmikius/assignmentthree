@@ -30,7 +30,12 @@ class ViewController: UIViewController {
         let mySufixName = sufixSurname(middleName: middleName)
         print("Your siffix - \(mySufixName)")
         
-        
+        let nameAndSurname = splitWords(string: joinedNameAndLastName)
+        print(nameAndSurname)
+        let name = onlyName(string: nameAndSurname)
+        print(name)
+        let surname = onlySurname(string: nameAndSurname)
+        print(surname)
         
         let reverseString = reverse(string: str)
         print(reverseString)
@@ -68,9 +73,33 @@ class ViewController: UIViewController {
     
     //    3 создать строку где слитно написано Ваши ИмяФамилия “Iv4nV4silevich"разбить на две отдельных строки из предыдущей создать третью где они обе будут разделены пробеломstr1 = “Iv4n”str2 = “V4silevich”str3 = “Iv4n V4silevich"
     
-    //    func divideWords(word: String) -> (String, String, String) {
-    //        word.reversed()
-    //    }
+    func splitWords(string: String) -> String {
+        var result = ""
+        
+        for character in string {
+            if String(character) == String(character).uppercased() {
+                result.append(" ")
+            }
+            
+            result.append(character)
+        }
+        
+        return result
+    }
+    
+    func onlyName(string: String) -> String {
+        let index = string.lastIndex(of: " ") ?? string.endIndex
+        let beginning = string[..<index]
+        let name = String(beginning)
+        return name
+    }
+    
+    func onlySurname(string: String) -> String {
+        let index = string.lastIndex(of: " ") ?? string.endIndex
+        let beginning = string[index...]
+        let surname = String(beginning)
+        return surname
+    }
     
     
     //    4 вывести строку зеркально Ось -> ьсОне используя reverse (посимвольно)
@@ -170,7 +199,7 @@ class ViewController: UIViewController {
         return result
     }
     
-//    8 написать метод который будет переводить строку в транслит - пример print(convertStrToTr4nslite(:”ЯЗЗЬ”)) -> “YAZZ”print(convertStrToTr4nslite:”морДа”) -> “morD4”
+    //    8 написать метод который будет переводить строку в транслит - пример print(convertStrToTr4nslite(:”ЯЗЗЬ”)) -> “YAZZ”print(convertStrToTr4nslite:”морДа”) -> “morD4”
     
     
     
