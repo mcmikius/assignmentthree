@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
     let string = "ЯЗЗЬ"
+    let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
+    let symbols = "da"
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +50,9 @@ class ViewController: UIViewController {
         
         let editedArray = sortAndDelete(someArray)
         print("Base array - \(someArray), new array - \(editedArray)")
+        
+        let filteredArray = searchSymbulsInArray(array: stringArray, searchSymbols: symbols)
+        print("Filtered array - \(filteredArray)")
     }
     
     //    1 создать строку с своим именемвывести количество символов содержащихся в ней
@@ -210,9 +215,10 @@ class ViewController: UIViewController {
     
     
     //    Задача 9. Сделать выборку из массива строк в которых содержится указанная строка
-    let dataSource = ["lada", "sedan", "baklazhan"]
-    let predicate = NSPredicate(format: "SELF contains %@", "da")
-    
+    func searchSymbulsInArray(array: [String], searchSymbols: String) -> [String] {
+        let result = array.filter { $0.contains(searchSymbols) }
+        return result
+    }
     
     //    Задача 10. Set<String> - antimat [“fuck”, “fak”] “hello my fak” “hello my ***”
     
