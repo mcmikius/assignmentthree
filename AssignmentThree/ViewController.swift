@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     let number = "12345948"
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
+    let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
     let string = "ЧМО"
     let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
     let symbols = "da"
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         let editedArray = sortAndDelete(someArray)
         print("Base array - \(someArray), new array - \(editedArray)")
         
-        let convertStringToTranslite = convert(string: string)
+        let convertStringToTranslite = convert(string: string, dictionary: dictionary)
         print("Word in transleted - \(convertStringToTranslite)")
 
         let filteredArray = searchSymbulsInArray(array: stringArray, searchSymbols: symbols)
@@ -236,9 +237,9 @@ class ViewController: UIViewController {
     
     //    8 написать метод который будет переводить строку в транслит - пример print(convertStrToTr4nslite(:”ЯЗЗЬ”)) -> “YAZZ”print(convertStrToTr4nslite:”морДа”) -> “morD4”
     
-    func convert(string: String) -> String {
+    func convert(string: String, dictionary: [String: String]) -> String {
         var result = ""
-        let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
+        let dictionary = dictionary
         for character in string {
             var newString = ""
             newString = dictionary["\(character)"]!
