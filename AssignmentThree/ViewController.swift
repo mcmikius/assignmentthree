@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     let number = "12345948"
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
-    let string = "ЯЗЗЬ"
+    let string = "ЧМО"
     let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
     let symbols = "da"
     
@@ -51,9 +51,39 @@ class ViewController: UIViewController {
         let editedArray = sortAndDelete(someArray)
         print("Base array - \(someArray), new array - \(editedArray)")
         
+        let convertStringToTranslite = convert(string: string)
+        print("Word in transleted - \(convertStringToTranslite)")
+
         let filteredArray = searchSymbulsInArray(array: stringArray, searchSymbols: symbols)
         print("Filtered array - \(filteredArray)")
+        
+        
+        
+        var stringToReplace = "This my string"
+        if let range = stringToReplace.range(of: "my") {
+            stringToReplace.replaceSubrange(range, with: "your")
+        }
+        
+        let string = "hello my fak"
+        let substring = "fak"
+        var index = 0
+        
+        for char in string {
+            if substring.first == char {
+                let startOfFoundCharacter = string.index(string.startIndex, offsetBy: index)
+                let lengthOfFoundCharacter = string.index(string.startIndex, offsetBy: (substring.count + index))
+                let range = startOfFoundCharacter..<lengthOfFoundCharacter
+                if string.substring(with: range) == substring {
+                    print("Found: \(substring)")
+                    break
+                }
+                
+            }
+            index += 1
+        }
+        
     }
+    
     
     //    1 создать строку с своим именемвывести количество символов содержащихся в ней
     func nameCount(name: String) -> Int {
@@ -206,15 +236,20 @@ class ViewController: UIViewController {
     
     //    8 написать метод который будет переводить строку в транслит - пример print(convertStrToTr4nslite(:”ЯЗЗЬ”)) -> “YAZZ”print(convertStrToTr4nslite:”морДа”) -> “morD4”
     
-    
-    //    let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ъ": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
-//    func convertStringToTranslite(string: String) {
-//        let latinString = string.applyingTransform(StringTransform.toLatin, reverse: false)
-//        let noDiacriticString = latinString?.applyingTransform(StringTransform.stripDiacritics, reverse: false)
-//    }
-    
+    func convert(string: String) -> String {
+        var result = ""
+        let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
+        for character in string {
+            var newString = ""
+            newString = dictionary["\(character)"]!
+            result += newString
+        }
+        
+        return result
+    }
     
     //    Задача 9. Сделать выборку из массива строк в которых содержится указанная строка
+    
     func searchSymbulsInArray(array: [String], searchSymbols: String) -> [String] {
         let result = array.filter { $0.contains(searchSymbols) }
         return result
