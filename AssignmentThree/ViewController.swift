@@ -67,6 +67,7 @@ class ViewController: UIViewController {
     
     
     //    1 создать строку с своим именемвывести количество символов содержащихся в ней
+
     func nameCount(name: String) -> Int {
         let count = name.count
         return count
