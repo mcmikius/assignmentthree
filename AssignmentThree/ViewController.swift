@@ -18,13 +18,13 @@ class ViewController: UIViewController {
     let number = "12345948"
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
-    let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
-    let string = "ЧМО"
+    let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya", "а": "A", "б": "B", "в": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya"]
+    let string = "ХЭР"
     let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
     let symbols = "da"
     let antimat: Set<String> = ["fuck", "fak"]
     let placeholder: Set<String> = ["****", "***"]
-    let phraseWithFuck = "hello my fak"
+    let phraseWithFuck = "hello my fuck"
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,25 +61,10 @@ class ViewController: UIViewController {
         let filteredArray = searchSymbulsInArray(array: stringArray, searchSymbols: symbols)
         print("Filtered array - \(filteredArray)")
         
-        let censoredLine = searchSwearword(antimat: antimat, phraseWithFuck: phraseWithFuck, placeholder: placeholder)
+        let censoredLine = searchSwearword(antimat: antimat, phraseWithFuck: phraseWithFuck)
         print(censoredLine)
     }
     
-    func searchSwearword(antimat: Set<String>, phraseWithFuck: String, placeholder: Set<String>) -> String {
-        let basePhrase = phraseWithFuck
-        var result = ""
-        for word in antimat {
-            let searchWord = word
-            if basePhrase.contains(searchWord) {
-                result = basePhrase.replacingOccurrences(of: searchWord, with: "***")
-            }
-        }
-        
-        
-        
-        
-        return result
-    }
     
     //    1 создать строку с своим именемвывести количество символов содержащихся в ней
     func nameCount(name: String) -> Int {
@@ -253,5 +238,22 @@ class ViewController: UIViewController {
     
     //    Задача 10. Set<String> - antimat [“fuck”, “fak”] “hello my fak” “hello my ***”
     
+    func searchSwearword(antimat: Set<String>, phraseWithFuck: String) -> String {
+        let basePhrase = phraseWithFuck
+        var wordMask = ""
+        var result = ""
+        for word in antimat {
+            let searchWord = word
+            if basePhrase.contains(searchWord) {
+                for _ in searchWord {
+                    var star = ""
+                    star = "*"
+                    wordMask += star
+                }
+                result = basePhrase.replacingOccurrences(of: searchWord, with: wordMask)
+            }
+        }
+        return result
+    }
 }
 
