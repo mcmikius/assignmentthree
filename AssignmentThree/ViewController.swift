@@ -169,6 +169,9 @@ class ViewController: UIViewController {
         if  containsSpecialChar(password) {
             secureLevel += 1
         }
+        if containsNumber(password) && containsLowcaseChar(password) && containsUpercaseChar(password) && containsSpecialChar(password) {
+            secureLevel += 1
+        }
         return secureLevel
     }
     
