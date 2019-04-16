@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     let password = "32556reWDr"
     let someArray = [9, 1, 2, 5, 1, 7]
     let dictionary = ["А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "E", "Ж": "Zh", "З": "Z", "И": "I", "Й": "I", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "Kh", "Ц": "C", "Ч": "Ch", "Ш": "Sh", "Щ": "Sch", "Ь": "'", "Ы": "Y", "Ъ": "'", "Э": "E", "Ю": "Yu", "Я": "Ya", "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "e", "ж": "zh", "з": "z", "и": "i", "й": "i", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "у": "u", "ф": "f", "х": "kh", "ц": "c", "ч": "ch", "ш": "sh", "щ": "sch", "ь": "'", "ы": "y", "ъ": "'", "э": "e", "ю": "yu", "я": "ya"]
-    let string = "ХЭР"
+    let string = "мудак"
     let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
     let symbols = "da"
     let antimat: Set<String> = ["fuck", "fak"]
