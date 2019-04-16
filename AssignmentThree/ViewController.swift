@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     let string = "ЧМО"
     let stringArray = ["lada", "sedan", "baklazhan", "bidan", "gondan", "baklan"]
     let symbols = "da"
+    let antimat: Set<String> = ["fuck", "fak"]
+    let placeholder: Set<String> = ["****", "***"]
+    let phraseWithFuck = "hello my fak"
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,33 +61,25 @@ class ViewController: UIViewController {
         let filteredArray = searchSymbulsInArray(array: stringArray, searchSymbols: symbols)
         print("Filtered array - \(filteredArray)")
         
-        
-        
-        var stringToReplace = "This my string"
-        if let range = stringToReplace.range(of: "my") {
-            stringToReplace.replaceSubrange(range, with: "your")
-        }
-        
-        let string = "hello my fak"
-        let substring = "fak"
-        var index = 0
-        
-        for char in string {
-            if substring.first == char {
-                let startOfFoundCharacter = string.index(string.startIndex, offsetBy: index)
-                let lengthOfFoundCharacter = string.index(string.startIndex, offsetBy: (substring.count + index))
-                let range = startOfFoundCharacter..<lengthOfFoundCharacter
-                if string.substring(with: range) == substring {
-                    print("Found: \(substring)")
-                    break
-                }
-                
-            }
-            index += 1
-        }
-        
+        let censoredLine = searchSwearword(antimat: antimat, phraseWithFuck: phraseWithFuck, placeholder: placeholder)
+        print(censoredLine)
     }
     
+    func searchSwearword(antimat: Set<String>, phraseWithFuck: String, placeholder: Set<String>) -> String {
+        let basePhrase = phraseWithFuck
+        var result = ""
+        for word in antimat {
+            let searchWord = word
+            if basePhrase.contains(searchWord) {
+                result = basePhrase.replacingOccurrences(of: searchWord, with: "***")
+            }
+        }
+        
+        
+        
+        
+        return result
+    }
     
     //    1 создать строку с своим именемвывести количество символов содержащихся в ней
     func nameCount(name: String) -> Int {
